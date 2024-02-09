@@ -1,0 +1,16 @@
+{
+	"name": "serencognito.github.io",
+	"version": "0.0.1",
+	"type": "module",
+	"private": true,
+	"main": "index.js",
+	"scripts": {
+		"start": "bun ./index.js"
+	},
+	"dependencies": {
+		"gh-pages": "^6.1.1",
+		"cookie": "latest",
+		"devalue": "latest",
+		"set-cookie-parser": "latest"
+	}
+}
