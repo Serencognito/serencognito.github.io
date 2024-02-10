@@ -16,6 +16,7 @@
     "deploy": "bunx gh-pages -d build"
   },
   "devDependencies": {
+    "@iconify/json": "^2.2.181",
     "@playwright/test": "^1.28.1",
     "@skeletonlabs/skeleton": "^2.8.0",
     "@skeletonlabs/tw-plugin": "^0.3.1",
@@ -42,6 +43,7 @@
     "tailwindcss": "^3.3.6",
     "tslib": "^2.4.1",
     "typescript": "^5.0.0",
+    "unplugin-icons": "^0.18.5",
     "vite": "^5.0.3",
     "vitest": "^1.2.0"
   },
