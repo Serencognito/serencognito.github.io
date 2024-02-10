@@ -1,2 +1,3 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div class="flex h-full items-center justify-center">
+	<p class="text-xl">// This will become a CV :&#41;</p>
+</div>
