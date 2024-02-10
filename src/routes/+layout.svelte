@@ -1,11 +1,12 @@
 <script lang="ts">
 	import '../app.pcss';
-	import { AppBar, AppRail, AppRailAnchor, AppRailTile, AppShell } from '@skeletonlabs/skeleton';
+	import { AppBar, AppRail, AppRailTile, AppShell } from '@skeletonlabs/skeleton';
 	import type { LayoutData } from './$types';
 	import LightSwitch from '$lib/components/ui/LightSwitch.svelte';
 	export let currentTile = 0;
 	import FaRegularCopy from '~icons/fa-regular/copy';
 	import OcticonGitBranch24 from '~icons/octicon/git-branch-24';
+	import CibSvelte from '~icons/cib/svelte';
 	import ClarityCogLine from '~icons/clarity/cog-line';
 	export let data: LayoutData;
 </script>
@@ -17,6 +18,9 @@
 				<section id="openFiles" class=" grid grid-flow-col gap-2 gap-x-2 divide-x divide-dotted">
 					<span class="hover:text-surface-800-100-token">about.me</span>
 					<span class="pl-2 hover:text-surface-800-100-token">located.at</span>
+					<span class="flex items-center justify-between pl-2 hover:text-surface-800-100-token">
+						<CibSvelte class="text-orange-700" />MadeWith.svelte</span
+					>
 				</section>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
