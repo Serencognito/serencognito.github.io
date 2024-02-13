@@ -8,6 +8,7 @@
 	import OcticonGitBranch24 from '~icons/octicon/git-branch-24';
 	import CibSvelte from '~icons/cib/svelte';
 	import ClarityCogLine from '~icons/clarity/cog-line';
+	import { goto } from '$app/navigation';
 	export let data: LayoutData;
 </script>
 
@@ -55,7 +56,6 @@
 				<AppRailTile bind:group={currentTile} name="tile-1" value={0} title="tile-1">
 					<OcticonGitBranch24 class="h-1/2 w-1/2" />
 				</AppRailTile>
-				<!-- --- -->
 				<svelte:fragment slot="trail">
 					<AppRailTile bind:group={currentTile} name="tile-1" value={0} title="tile-1">
 						<ClarityCogLine class="h-1/2 w-1/2" />
