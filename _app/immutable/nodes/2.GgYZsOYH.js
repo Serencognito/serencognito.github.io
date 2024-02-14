@@ -1,0 +1,1 @@
+import{c as r,o as e,t as p}from"../chunks/disclose-version.WhGS-OEU.js";import{i as m,p as s,a as f}from"../chunks/runtime.FnY2WV3q.js";import{o as i}from"../chunks/main-client.ayjoVHb0.js";import{g as n}from"../chunks/entry.8bUDZ4xL.js";var g=p("Open a file",!0);function v(o,a){f(a,!1),i(()=>{n("/about-me")}),m();var t=e(o,!0,g);r(o,t),s()}export{v as component};
