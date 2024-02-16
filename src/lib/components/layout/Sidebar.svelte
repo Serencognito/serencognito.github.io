@@ -1,5 +1,12 @@
 <script lang="ts">
-	import { Accordion, AccordionItem, AppRail, AppRailTile } from '@skeletonlabs/skeleton';
+	import {
+		Accordion,
+		AccordionItem,
+		AppRail,
+		AppRailTile,
+		storePopup,
+		type PopupSettings
+	} from '@skeletonlabs/skeleton';
 	import FaRegularCopy from '~icons/fa-regular/copy';
 	import OcticonGitBranch24 from '~icons/octicon/git-branch-24';
 	import ClarityCogLine from '~icons/clarity/cog-line';
@@ -12,6 +19,15 @@
 
 	let currentTile = $state(0);
 	let expandedRoutes: string[] = $state(['root']);
+
+	const popupFeatured: PopupSettings = {
+		// Represents the type of event that opens/closed the popup
+		event: 'click',
+		// Matches the data-popup value on your popup element
+		target: 'popupFeatured',
+		// Defines which side of your trigger the popup will appear
+		placement: 'bottom'
+	};
 
 	function isOpen(route: string) {
 		return expandedRoutes.includes(route);
@@ -27,10 +43,16 @@
 
 	function openFile(file: RouteFile) {
 		editorsList.activeEditor?.openFile(file);
+	}
 
-		goto(file.route);
+	function fileContextMenu(event: MouseEvent, file: RouteFile) {
+		event.preventDefault();
+		console.log('file context menu', file);
+		storePopup;
 	}
 </script>
+
+<div class="card" data-popup="contextMenu">Click me</div>
 
 <div class="flex h-full cursor-pointer gap-2">
 	<section id="explorer">
@@ -59,21 +81,25 @@
 					</span>
 				</svelte:fragment>
 				<svelte:fragment slot="content">
-					<div class="flex w-fit flex-col gap-2">
+					<ul class="list">
 						{#each filesList.files as file}
-							<div
-								class="flex flex-nowrap items-center gap-2 overflow-hidden text-sm font-light
-                        hover:text-surface-700-200-token"
+							<li
+								class="overflow-hidden text-sm font-light
+                                hover:text-surface-700-200-token
+                                {file === editorsList.activeEditor?.activeFile
+									? 'text-teal-300'
+									: ''}"
 								on:click={() => openFile(file)}
 								on:keypress={() => openFile(file)}
 								role="menuitem"
 								tabindex="0"
+								on:contextmenu={(e) => fileContextMenu(e, file)}
 							>
 								<svelte:component this={file.icon} style={file.iconStyle} />
 								<span>{file.name}</span>
-							</div>
+							</li>
 						{/each}
-					</div>
+					</ul>
 				</svelte:fragment>
 			</AccordionItem>
 		</Accordion>

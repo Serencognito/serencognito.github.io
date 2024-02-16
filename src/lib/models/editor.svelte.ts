@@ -1,3 +1,4 @@
+import { goto } from '$app/navigation';
 import type { RouteFile } from './route-file';
 
 /**
@@ -26,6 +27,7 @@ export class Editor {
 
 		if (this.activeFile === file) {
 			this.activeFile = this.openFiles[0] || null;
+			goto(this.activeFile?.route || '/');
 		}
 	}
 
@@ -39,6 +41,7 @@ export class Editor {
 		}
 
 		this.activeFile = file;
+		goto(file.route);
 	}
 
 	/**

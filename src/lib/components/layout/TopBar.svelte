@@ -22,17 +22,17 @@
 	<AppBar background="surface-50 dark:surface-500" padding="px-4 py-1">
 		<section id="editorPath" class="flex justify-between divide-x">
 			{#each editorsList.editors as editor}
-				<div class="flex gap-1">
+				<ol class="breadcrumb">
 					{#if editor.activeFile}
 						{#each editor.activeFile.path || [] as pathPart}
-							<span class="px-1 hover:text-surface-800-100-token">{pathPart}</span>
-							<span>&gt;</span>
+							<li class="crumb hover:text-surface-800-100-token">{pathPart}</li>
+							<li class="crumb-separator" aria-hidden>&rsaquo;</li>
 						{/each}
-						<span class="px-1 hover:text-surface-800-100-token">
+						<li class="crumb hover:text-surface-800-100-token">
 							{editor.activeFile.name}
-						</span>
+						</li>
 					{/if}
-				</div>
+				</ol>
 			{/each}
 		</section>
 	</AppBar>
