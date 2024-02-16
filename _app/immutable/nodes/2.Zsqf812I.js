@@ -1,1 +1,0 @@
-import{c as a,o as i,t as p}from"../chunks/disclose-version.SdoX38na.js";import{i as o,p as l,b as r}from"../chunks/runtime.1_U_cxO7.js";var c=p('<div class="flex h-full items-center justify-center"><p class="text-xl">// This will become a CV :&#41;</p></div>');function n(e,s){r(s,!1),o();var t=i(e,!0,c);a(e,t),l()}export{n as component};
