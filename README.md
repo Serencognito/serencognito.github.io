@@ -1,38 +1,52 @@
-# create-svelte
+# What is this project?
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+This is a fun attempt at making a web based CV for myself, modelled after Visual Studio Code (with my current theme, layout, etc).
 
-## Creating a project
+The hosted version can be found [here](https://serencognito.github.io/about-me/)
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Technologies
+
+- Svelte 5 (in preview at the time of writing, this is largely a test of Svelte 5 vs 4, which I am familiar with)
+- SvelteKit
+- TailwindCSS
+- [Skeleton](https://www.skeleton.dev/)
+
+## Setup
+
+Should be as simple as running
 
 ```bash
+bun install
+```
+
+or
+
+```bash
+npm install
+```
+
+And should be good to go.
+
+## Available Commands
+
+I have primarily this project with bun (again, as a test), but the npm equivalents will all work.
+
+```bash
+
 # create a new project in the current directory
-npm create svelte@latest
 
-# create a new project in my-app
-npm create svelte@latest my-app
+bun run dev #Start dev server
+
+bun run build #Build for production
+
+bun run preview #Test built site
+
+bun run test #At the time of writing, I've just started and not done any tests yet
+
+bun run test:inegration
+
+bun run test:unit
+
+bun run deploy #Deploy to github pages using the gh-pages package
+
 ```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
