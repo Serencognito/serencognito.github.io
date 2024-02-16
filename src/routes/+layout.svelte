@@ -1,40 +1,17 @@
 <script lang="ts">
 	import '../app.pcss';
-	import { AppBar, AppRail, AppRailTile, AppShell } from '@skeletonlabs/skeleton';
-	import type { LayoutData } from './$types';
-	import LightSwitch from '$lib/components/ui/LightSwitch.svelte';
-	export let currentTile = 0;
+	import { AppRail, AppRailTile, AppShell } from '@skeletonlabs/skeleton';
 	import FaRegularCopy from '~icons/fa-regular/copy';
 	import OcticonGitBranch24 from '~icons/octicon/git-branch-24';
-	import CibSvelte from '~icons/cib/svelte';
 	import ClarityCogLine from '~icons/clarity/cog-line';
-	import { goto } from '$app/navigation';
-	export let data: LayoutData;
+	import TopBar from '$lib/components/layout/TopBar.svelte';
+
+	let currentTile = $state(0);
 </script>
 
 <AppShell class="h-screen">
 	<svelte:fragment slot="header">
-		<AppBar background="surface-50 dark:surface-500" class="w-full" padding="px-8 py-1">
-			<svelte:fragment slot="lead">
-				<section id="openFiles" class=" grid grid-flow-col gap-2 gap-x-2 divide-x divide-dotted">
-					<span class="hover:text-surface-800-100-token">about.me</span>
-					<span class="pl-2 hover:text-surface-800-100-token">located.at</span>
-					<span class="flex items-center justify-between pl-2 hover:text-surface-800-100-token">
-						<CibSvelte class="text-orange-700" />MadeWith.svelte</span
-					>
-				</section>
-			</svelte:fragment>
-			<svelte:fragment slot="trail">
-				<LightSwitch />
-			</svelte:fragment>
-		</AppBar>
-		<AppBar background="surface-50 dark:surface-500" padding="px-4 py-1">
-			<span class="hover:text-surface-800-100-token">src</span>
-			&gt;
-			<span class="hover:text-surface-800-100-token">routes</span>
-			&gt;
-			<span class="hover:text-surface-800-100-token"> about.me </span>
-		</AppBar>
+		<TopBar />
 	</svelte:fragment>
 
 	<svelte:fragment slot="sidebarRight">

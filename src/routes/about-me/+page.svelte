@@ -1,5 +1,5 @@
 <script lang="ts">
-	import EditorPage from '$lib/components/ui/EditorPage.svelte';
+	import EditorPage from '$lib/components/layout/EditorPage.svelte';
 
 	let { data } = $props();
 

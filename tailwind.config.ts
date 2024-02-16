@@ -22,7 +22,8 @@ const config = {
 			themes: {
 				custom: [andromedaTheme]
 			}
-		})
+		}),
+		require('tailwind-scrollbar')
 	]
 } satisfies Config;
 
