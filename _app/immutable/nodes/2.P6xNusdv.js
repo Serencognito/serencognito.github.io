@@ -1,0 +1,1 @@
+import{c as r,o as t,t as o}from"../chunks/disclose-version.1JuPZtut.js";import{b as s,p as f,d as m}from"../chunks/runtime.ccL_vF5I.js";var n=o("Open a file",!0);function l(a,e){m(e,!1),s();var p=t(a,!0,n);r(a,p),f()}export{l as component};

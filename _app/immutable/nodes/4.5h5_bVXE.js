@@ -1,0 +1,1 @@
+import{c as t,o,t as s}from"../chunks/disclose-version.1JuPZtut.js";import{b as p,p as f,d as m}from"../chunks/runtime.ccL_vF5I.js";var l=s("It sure was! // I'll add more here later",!0);function i(a,e){m(e,!1),p();var r=o(a,!0,l);t(a,r),f()}export{i as component};
