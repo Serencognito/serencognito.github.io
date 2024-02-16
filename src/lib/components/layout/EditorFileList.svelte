@@ -5,8 +5,6 @@
 
 	let { editor } = $props<{ editor: Editor }>();
 
-	$inspect(editor);
-
 	const isActive = (file: RouteFile) => {
 		return file === editor.activeFile;
 	};
@@ -16,9 +14,10 @@
 	}
 </script>
 
+{editor.openFiles.length}
 <section
 	id="openFiles"
-	class="grid scroll-m-6 grid-flow-col gap-4 scrollbar-none hover:scrollbar-thin"
+	class="scrollbar-none hover:scrollbar-thin grid scroll-m-6 grid-flow-col gap-4"
 >
 	{#each editor.openFiles as file}
 		<span
@@ -34,7 +33,7 @@
 
 			<button
 				class="flex h-6 w-6 items-center justify-center rounded hover:bg-surface-400/25"
-				on:click={() => closeFile(file)}
+				on:click|stopPropagation={() => closeFile(file)}
 			>
 				<MaterialSymbolsLightClose class="invisible h-5 w-5 group-hover:visible" />
 			</button>

@@ -4,6 +4,7 @@ import { filesList } from './files-list.svelte';
 
 class EditorsList {
 	editors = $state([] as Editor[]);
+	activeEditor = $state(null as Editor | null);
 
 	openNew(file: RouteFile) {
 		const newEditor = new Editor(file);
@@ -12,7 +13,7 @@ class EditorsList {
 
 	constructor() {
 		this.editors = [new Editor(filesList.files[0])];
-		this.editors[0].openFiles.push(filesList.files[1]);
+		this.activeEditor = this.editors[0];
 	}
 }
 

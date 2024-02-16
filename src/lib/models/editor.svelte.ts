@@ -30,7 +30,7 @@ export class Editor {
 	}
 
 	/**
-	 * Opens the specified file.
+	 * Opens the specified file and makes it the active file.
 	 * @param file - The file to open.
 	 */
 	openFile(file: RouteFile) {

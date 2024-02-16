@@ -24,4 +24,9 @@ export interface RouteFile {
 	 * The style of the icon.
 	 */
 	iconStyle: string;
+
+	/**
+	 * The string representing the true route to the page
+	 */
+	route: string;
 }
