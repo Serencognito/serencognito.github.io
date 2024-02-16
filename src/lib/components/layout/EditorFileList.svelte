@@ -14,7 +14,6 @@
 	}
 </script>
 
-{editor.openFiles.length}
 <section
 	id="openFiles"
 	class="scrollbar-none hover:scrollbar-thin grid scroll-m-6 grid-flow-col gap-4"
