@@ -14,7 +14,7 @@
 
 <!-- <svelte:head>{@html '<script>(' + setInitialClassState.toString() + ')();</script>'}</svelte:head> -->
 
-<button on:click={() => toggleMode()}>
+<button on:click={() => toggleMode()} class="p-2">
 	{#if $modeCurrent}
 		<LineMdMoonToSunnyOutlineTransition />
 	{:else}

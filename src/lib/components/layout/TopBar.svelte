@@ -18,10 +18,6 @@
 				{/each}
 			</section>
 		</svelte:fragment>
-
-		<svelte:fragment slot="trail">
-			<LightSwitch />
-		</svelte:fragment>
 	</AppBar>
 	<AppBar background="surface-50 dark:surface-500" padding="px-4 py-1">
 		<section id="editorPath" class="flex justify-between divide-x">
