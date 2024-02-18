@@ -1,4 +1,5 @@
-import type { SvelteComponent } from 'svelte';
+import type { ComponentType, SvelteComponent } from 'svelte';
+import type { Component } from 'svelte/compiler';
 import type { SvelteHTMLElements } from 'svelte/elements';
 
 /**
@@ -29,4 +30,9 @@ export interface RouteFile {
 	 * The string representing the true route to the page
 	 */
 	route: string;
+
+	/**
+	 * The component associated with the route file.
+	 */
+	component?: ComponentType<SvelteComponent>;
 }

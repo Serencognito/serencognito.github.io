@@ -10,11 +10,6 @@
 </script>
 
 <AppShell class="h-screen">
-	<svelte:fragment slot="pageHeader">
-		<TopBar />
-	</svelte:fragment>
-
-	<!-- TODO: Make this extend to top -->
 	<svelte:fragment slot="sidebarRight">
 		<Sidebar />
 	</svelte:fragment>

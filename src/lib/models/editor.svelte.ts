@@ -1,4 +1,4 @@
-import { goto } from '$app/navigation';
+import { editorsList } from '$lib/util/editors-list.svelte';
 import type { RouteFile } from './route-file';
 
 /**
@@ -27,7 +27,10 @@ export class Editor {
 
 		if (this.activeFile === file) {
 			this.activeFile = this.openFiles[0] || null;
-			goto(this.activeFile?.route || '/');
+		}
+
+		if (this.openFiles.length === 0) {
+			editorsList.closeEditor(this);
 		}
 	}
 
@@ -41,7 +44,6 @@ export class Editor {
 		}
 
 		this.activeFile = file;
-		goto(file.route);
 	}
 
 	/**

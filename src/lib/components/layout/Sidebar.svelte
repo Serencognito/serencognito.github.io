@@ -32,7 +32,7 @@
 	}
 
 	function openFile(file: RouteFile | null) {
-		editorsList.activeEditor?.openFile(file!);
+		editorsList.openFile(file!);
 	}
 
 	function openInNewEditor(file: RouteFile | null) {
