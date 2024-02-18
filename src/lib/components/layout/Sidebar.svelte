@@ -1,33 +1,23 @@
 <script lang="ts">
-	import {
-		Accordion,
-		AccordionItem,
-		AppRail,
-		AppRailTile,
-		storePopup,
-		type PopupSettings
-	} from '@skeletonlabs/skeleton';
+	import { Accordion, AccordionItem, AppRail, AppRailTile } from '@skeletonlabs/skeleton';
 	import FaRegularCopy from '~icons/fa-regular/copy';
 	import OcticonGitBranch24 from '~icons/octicon/git-branch-24';
 	import ClarityCogLine from '~icons/clarity/cog-line';
 	import { filesList } from '$lib/util/files-list.svelte';
 	import { editorsList } from '$lib/util/editors-list.svelte';
 	import type { RouteFile } from '$lib/models/route-file';
-	import { goto } from '$app/navigation';
 	import PhCaretRightLight from '~icons/ph/caret-right-light';
 	import LightSwitch from '../ui/LightSwitch.svelte';
+	import { onMount } from 'svelte';
+	import { scale } from 'svelte/transition';
+	import { invalidate } from '$app/navigation';
 
 	let currentTile = $state(0);
-	let expandedRoutes: string[] = $state(['root']);
+	let showContextMenu = $state(false);
+	let contextMenu: HTMLDivElement | null = $state(null);
+	let contextTarget: RouteFile | null = $state(null);
 
-	const popupFeatured: PopupSettings = {
-		// Represents the type of event that opens/closed the popup
-		event: 'click',
-		// Matches the data-popup value on your popup element
-		target: 'popupFeatured',
-		// Defines which side of your trigger the popup will appear
-		placement: 'bottom'
-	};
+	let expandedRoutes: string[] = $state(['root']);
 
 	function isOpen(route: string) {
 		return expandedRoutes.includes(route);
@@ -41,18 +31,56 @@
 		}
 	}
 
-	function openFile(file: RouteFile) {
-		editorsList.activeEditor?.openFile(file);
+	function openFile(file: RouteFile | null) {
+		editorsList.activeEditor?.openFile(file!);
+	}
+
+	function openInNewEditor(file: RouteFile | null) {
+		editorsList.openNew(file!);
 	}
 
 	function fileContextMenu(event: MouseEvent, file: RouteFile) {
+		if (!contextMenu) return;
+
 		event.preventDefault();
-		console.log('file context menu', file);
-		storePopup;
+		showContextMenu = true;
+		const offset = 5;
+		if (contextMenu.clientWidth + offset + event.clientX > window.innerWidth)
+			contextMenu.style.left = `${event.clientX - contextMenu.clientWidth - offset}px`;
+		else contextMenu.style.left = `${event.clientX + offset}px`;
+		if (contextMenu.clientHeight + event.clientY + offset > window.innerHeight)
+			contextMenu.style.top = `${event.clientY - contextMenu.clientHeight - offset}px`;
+		else contextMenu.style.top = `${event.clientY + offset}px`;
+
+		contextTarget = file;
 	}
+
+	onMount(() => {
+		window.addEventListener('click', () => {
+			showContextMenu = false;
+		});
+	});
 </script>
 
-<div class="card" data-popup="contextMenu">Click me</div>
+<div
+	class="card variant-glass-tertiary absolute w-fit rounded-xl"
+	transition:scale
+	bind:this={contextMenu}
+	class:invisible={!showContextMenu}
+>
+	<button
+		class="block w-48 rounded-t-xl bg-opacity-20 px-2 text-left hover:bg-primary-300-600-token hover:text-primary-600-300-token"
+		on:click={() => openFile(contextTarget)}
+	>
+		<span>Open</span>
+	</button>
+	<button
+		class="block w-48 rounded-b-xl bg-opacity-20 px-2 text-left hover:bg-primary-300-600-token hover:text-primary-600-300-token"
+		on:click={() => openInNewEditor(contextTarget)}
+	>
+		<span>Open to the Side</span>
+	</button>
+</div>
 
 <div class="flex h-full cursor-pointer gap-2">
 	<section id="explorer">
