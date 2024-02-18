@@ -24,6 +24,11 @@ const config = {
 			}
 		}),
 		require('tailwind-scrollbar')
+	],
+	safelist: [
+		{
+			pattern: /grid-cols-./
+		}
 	]
 } satisfies Config;
 
