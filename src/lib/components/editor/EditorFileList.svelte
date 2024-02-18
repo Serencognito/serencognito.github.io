@@ -2,8 +2,10 @@
 	import MaterialSymbolsLightClose from '~icons/material-symbols-light/close';
 	import type { Editor } from '$lib/models/editor.svelte';
 	import type { RouteFile } from '$lib/models/route-file';
+	import { editorsList } from '$lib/util/editors-list.svelte';
 
 	let { editor } = $props<{ editor: Editor }>();
+	let isActiveEditor = $derived(editorsList.activeEditor == editor);
 
 	const isActive = (file: RouteFile) => {
 		return file === editor.activeFile;
@@ -22,6 +24,7 @@
 		{#each editor.openFiles as file}
 			<span
 				class="group flex w-fit items-center justify-between gap-2 whitespace-nowrap"
+				class:opacity-50={!isActiveEditor}
 				class:text-teal-300={isActive(file)}
 				on:click={() => editor.openFile(file)}
 				on:keypress={() => editor.openFile(file)}

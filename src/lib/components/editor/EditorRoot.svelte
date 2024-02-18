@@ -10,6 +10,7 @@
 
 <section
 	id="editor-root"
+	class="overflow-x-scroll"
 	on:click={() => editorsList.setActiveEditor(editor)}
 	on:keydown={() => editorsList.setActiveEditor(editor)}
 	role="menu"
