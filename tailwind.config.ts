@@ -22,7 +22,13 @@ const config = {
 			themes: {
 				custom: [andromedaTheme]
 			}
-		})
+		}),
+		require('tailwind-scrollbar')
+	],
+	safelist: [
+		{
+			pattern: /grid-cols-./
+		}
 	]
 } satisfies Config;
 

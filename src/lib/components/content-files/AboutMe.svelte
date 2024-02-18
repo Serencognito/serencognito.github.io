@@ -1,7 +1,5 @@
 <script lang="ts">
-	import EditorPage from '$lib/components/ui/EditorPage.svelte';
-
-	let { data } = $props();
+	import EditorPage from '$lib/components/editor/EditorPage.svelte';
 
 	let lineCount = $state(0);
 	const lineHeight = 24;

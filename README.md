@@ -29,7 +29,7 @@ And should be good to go.
 
 ## Available Commands
 
-I have primarily this project with bun (again, as a test), but the npm equivalents will all work.
+I have primarily run this project with bun (again, as a test of a tool I don't know well yet), but the npm equivalents should all work.
 
 ```bash
 
@@ -48,5 +48,7 @@ bun run test:inegration
 bun run test:unit
 
 bun run deploy #Deploy to github pages using the gh-pages package
+
+bun run format #Run Prettier to format files
 
 ```
