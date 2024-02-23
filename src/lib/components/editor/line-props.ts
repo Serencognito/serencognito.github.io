@@ -1,5 +1,5 @@
 export class LineProps {
-	type?: 'comment' | 'ts' | 'html' = 'comment';
+	type?: 'comment' | 'code' | 'fadeOut' = 'comment';
 	content?: string = '';
 	isFirst?: boolean = false;
 	isLast?: boolean = false;
