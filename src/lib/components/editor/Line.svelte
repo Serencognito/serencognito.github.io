@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { tokenize } from '$lib/util/string-tokenisation';
+	import { TokenType, tokenize } from '$lib/util/string-tokenisation';
+	import DynamicIcon from '../ui/DynamicIcon.svelte';
 	import type { LineProps } from './line-props';
 
 	let { type, content, isFirst, isLast, lineNumber } = $props<LineProps>();
@@ -12,7 +13,7 @@
 		{lineNumber}
 	</div>
 
-	<div class="flex-1 flex-nowrap text-nowrap break-keep">
+	<div class="flex flex-1 flex-nowrap">
 		{#if type === 'comment'}
 			{#if isFirst}
 				<div class="whitespace-pre text-surface-400">/**&nbsp;</div>
@@ -25,7 +26,11 @@
 
 		{#if type === 'code'}
 			{#each tokenizedContent as token}
-				<span class="whitespace-pre {token.class}">{token.content}</span>
+				{#if token.type === TokenType.Icon}
+					<DynamicIcon icon={token.content} />
+				{:else}
+					<span class="whitespace-pre {token.class}">{token.content}</span>
+				{/if}
 			{/each}
 		{/if}
 

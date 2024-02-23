@@ -1,8 +1,10 @@
-enum TokenType {
+export enum TokenType {
 	Keyword,
 	Tag,
 	TagContent,
+	ObjectBrace,
 	Brace,
+	BraceContent,
 	String,
 	ClassName,
 	Structure,
@@ -11,10 +13,10 @@ enum TokenType {
 }
 
 const handleTokenStack = (word: string, tokenStack: string[]) => {
-	if (['<', '{'].includes(word)) {
+	if (['(', '[', '<', '{'].includes(word)) {
 		tokenStack.push(word);
 	}
-	if (['>', '}'].includes(word)) {
+	if ([')', ']', '>', '}'].includes(word)) {
 		tokenStack.pop();
 	}
 
@@ -25,6 +27,14 @@ const handleTokenStack = (word: string, tokenStack: string[]) => {
 			tokenStack.push(word);
 		}
 	}
+
+	if (['let', 'const', 'func'].includes(word)) {
+		tokenStack.push('let');
+	}
+
+	if (['let', 'const', 'func'].includes(tokenStack.at(-1) ?? '') && word === '=') {
+		tokenStack.pop();
+	}
 };
 
 const getTokenType = (word: string, tokenStack: string[]) => {
@@ -32,7 +42,6 @@ const getTokenType = (word: string, tokenStack: string[]) => {
 
 	if (
 		[
-			'script',
 			'import',
 			'type',
 			'from',
@@ -50,6 +59,7 @@ const getTokenType = (word: string, tokenStack: string[]) => {
 
 	if (['script', 'div', 'span', 'h2', 'a', 'p'].includes(word)) return TokenType.Tag;
 
+	if (word.match(/({|})/) && tokenStack.includes('[')) return TokenType.ObjectBrace;
 	if (word.match(/({|})/)) return TokenType.Brace;
 
 	if (word.match(/("|')/)) return TokenType.String;
@@ -58,8 +68,11 @@ const getTokenType = (word: string, tokenStack: string[]) => {
 
 	if (["'", '"'].includes(tokenStack.at(-1) ?? '')) return TokenType.String;
 
-	if (['(', ')', '[', ']', '<', '>', '=', '/'].includes(word)) return TokenType.Structure;
+	if (['(', ')', '[', ']', '<', '>', '=', '/', '#'].includes(word)) return TokenType.Structure;
+
 	if (tokenStack.at(-1) == '<') return TokenType.TagContent;
+
+	if (tokenStack.at(-1) == '{') return TokenType.BraceContent;
 
 	return TokenType.None;
 };
@@ -67,16 +80,20 @@ const getTokenType = (word: string, tokenStack: string[]) => {
 const getWordClass = (type: TokenType) => {
 	switch (type) {
 		case TokenType.Keyword:
-			return 'text-secondary-700';
+			return 'text-secondary-500';
 		case TokenType.Tag:
 			return 'text-error-500';
+		case TokenType.ObjectBrace:
+			return 'text-tertiary-500';
 		case TokenType.Brace:
-			return 'text-warning-600';
+			return 'text-warning-500';
+		case TokenType.BraceContent:
+			return 'text-primary-500';
 		case TokenType.ClassName:
 		case TokenType.TagContent:
 			return 'text-warning-400';
 		case TokenType.String:
-			return 'text-success-700';
+			return 'text-success-500';
 		case TokenType.None:
 		case TokenType.Structure:
 		case TokenType.Icon:
