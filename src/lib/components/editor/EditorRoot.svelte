@@ -4,8 +4,6 @@
 	import EditorFileList from './EditorFileList.svelte';
 
 	let { editor } = $props<{ editor: Editor }>();
-
-	$inspect(editorsList.activeEditor);
 </script>
 
 <section
