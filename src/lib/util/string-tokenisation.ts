@@ -1,3 +1,6 @@
+/**
+ * Represents the different types of tokens used for string tokenization.
+ */
 export enum TokenType {
 	Keyword,
 	Tag,
@@ -12,7 +15,12 @@ export enum TokenType {
 	None
 }
 
-const handleTokenStack = (word: string, tokenStack: string[]) => {
+/**
+ * Handles the token stack based on the given word.
+ * @param word - The word to handle.
+ * @param tokenStack - The token stack to modify.
+ */
+export const handleTokenStack = (word: string, tokenStack: string[]) => {
 	if (['(', '[', '<', '{'].includes(word)) {
 		tokenStack.push(word);
 	}
@@ -37,7 +45,14 @@ const handleTokenStack = (word: string, tokenStack: string[]) => {
 	}
 };
 
-const getTokenType = (word: string, tokenStack: string[]) => {
+/**
+ * Determines the token type for a given word based on predefined rules.
+ * @param word - The word to determine the token type for.
+ * @param tokenStack - A stack of tokens encountered so far
+ * that may influence the current word's classification.
+ * @returns The token type for the given word.
+ */
+export const getTokenType = (word: string, tokenStack: string[]) => {
 	if (['Icon', 'Technologies'].includes(word)) return TokenType.ClassName;
 
 	if (
@@ -68,7 +83,7 @@ const getTokenType = (word: string, tokenStack: string[]) => {
 
 	if (["'", '"'].includes(tokenStack.at(-1) ?? '')) return TokenType.String;
 
-	if (['(', ')', '[', ']', '<', '>', '=', '/', '#'].includes(word)) return TokenType.Structure;
+	if (['(', ')', '[', ']', '<', '>', '=', '/', '#', ';'].includes(word)) return TokenType.Structure;
 
 	if (tokenStack.at(-1) == '<') return TokenType.TagContent;
 
@@ -77,7 +92,12 @@ const getTokenType = (word: string, tokenStack: string[]) => {
 	return TokenType.None;
 };
 
-const getWordClass = (type: TokenType) => {
+/**
+ * Returns the CSS class name based on the given token type.
+ * @param type The token type.
+ * @returns The CSS class name.
+ */
+export const getWordClass = (type: TokenType) => {
 	switch (type) {
 		case TokenType.Keyword:
 			return 'text-secondary-500';
@@ -101,9 +121,14 @@ const getWordClass = (type: TokenType) => {
 	}
 };
 
+/**
+ * Tokenizes the given content string in order to apply psuedo-syntax highlighting.
+ * @param content The string to be tokenized.
+ * @returns An array of tokens representing the content string.
+ */
 export const tokenize = (content: string) => {
-	// Split on whitespace or any of the following characters: [ ] { } ( ) < > / # : = " '
-	const words = content.split(/(\s+|\[|\]|\{|\}|\(|\)|<|>|\/|#|:|=|"|')/).filter(Boolean);
+	// Split on whitespace or any of the following characters: [ ] { } ( ) < > / # : = " ' ;
+	const words = content.split(/(\s+|\[|\]|\{|\}|\(|\)|<|>|\/|#|:|=|"|'|;)/).filter(Boolean);
 	const firstToken = words.at(words.findIndex((word) => word.trim() !== '')) ?? '';
 	const tokenStack: string[] = [];
 	handleTokenStack(firstToken, tokenStack);
