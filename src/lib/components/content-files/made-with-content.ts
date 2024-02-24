@@ -1,5 +1,8 @@
 import type { LineProps } from '../editor/line-props';
 
+/**
+ * Represents an array of LineProps objects that define the content for the "Made with" section.
+ */
 export const madeWithContent: LineProps[] = [
 	{ type: 'code', content: '<script lang="ts">', isFirst: true },
 	{ type: 'code', content: '    import { Icon } from "../icons/icon";' },

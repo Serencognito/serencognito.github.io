@@ -19,7 +19,7 @@
 <section id="editor" class="p-3">
 	<div
 		id="openFiles"
-		class="grid scroll-m-6 grid-flow-col gap-4 overflow-x-scroll scrollbar-none hover:scrollbar-thin"
+		class="flex scroll-m-6 gap-4 overflow-x-scroll scrollbar-none hover:scrollbar-thin"
 	>
 		{#each editor.openFiles as file}
 			<span

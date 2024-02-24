@@ -1,5 +1,8 @@
 import type { LineProps } from '../editor/line-props';
 
+/**
+ * Represents the content for the "About Me" section.
+ */
 export const aboutMeContent: LineProps[] = [
 	{ type: 'comment', content: '', isFirst: true },
 	{ type: 'comment', content: 'About Me' },
