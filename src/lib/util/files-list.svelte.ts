@@ -4,9 +4,18 @@ import CibSvelte from '~icons/cib/svelte';
 import AboutMe from '$lib/components/content-files/AboutMe.svelte';
 import MadeWith from '$lib/components/content-files/MadeWith.svelte';
 
-class FilesList {
+/**
+ * Represents a list of files.
+ */
+export class FilesList {
+	/**
+	 * The array of files.
+	 */
 	files = $state([] as RouteFile[]);
 
+	/**
+	 * The active file.
+	 */
 	constructor() {
 		this.files = [
 			{
@@ -29,4 +38,7 @@ class FilesList {
 	}
 }
 
+/**
+ * The list of files.
+ */
 export let filesList = new FilesList();
